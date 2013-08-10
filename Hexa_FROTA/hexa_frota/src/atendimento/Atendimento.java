@@ -4,7 +4,7 @@
  */
 package atendimento;
 
-import New.AlocacaoAtendimento;
+import alocacao.AlocacaoAtendimento;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;

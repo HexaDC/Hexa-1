@@ -52,7 +52,7 @@ public class TipoAtendimento implements Serializable {
     private String codigo;
     @Column(name = "descricao")
     private String descricao;
-     private Collection<Procedimento> procedimentoCollection;
+     private Collection<Procedimento> procedimentoCollection2;
     private List<Procedimento> listProcedimento;
 
     public TipoAtendimento() {

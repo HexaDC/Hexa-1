@@ -6,19 +6,19 @@
     <class>procedimento.Procedimento</class>
     <class>tipoAtendimento.TipoAtendimento</class>
     <class>operador.Operador</class>
-    <class>New.Abastecimeto</class>
-    <class>New.StatusVtr</class>
-    <class>New.OperadorAlocacao</class>
-    <class>New.AlocacaoAtendimento</class>
-    <class>New.RegistroPreventivo</class>
-    <class>New.Alocacao</class>
-    <class>New.Contrato</class>
-    <class>New.Manutencao</class>
     <class>New.Veiculo</class>
-    <class>New.CombustivelContratado</class>
-    <class>New.ModeloVtr</class>
-    <class>New.VeiculoComplementos</class>
-    <class>New.MontadoraVtr</class>
+    <class>alocacao.Alocacao</class>
+    <class>abastecimento.Abastecimeto</class>
+    <class>veiculo.ModeloVtr</class>
+    <class>veiculo.StatusVtr</class>
+    <class>veiculo.VeiculoComplementos</class>
+    <class>abastecimento.Contrato</class>
+    <class>veiculo.MontadoraVtr</class>
+    <class>abastecimento.CombustivelContratado</class>
+    <class>alocacao.AlocacaoAtendimento</class>
+    <class>alocacao.OperadorAlocacao</class>
+    <class>veiculo.RegistroPreventivo</class>
+    <class>veiculo.Manutencao</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hexa_frota"/>
       <property name="javax.persistence.jdbc.password" value="postgres"/>

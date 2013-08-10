@@ -4,7 +4,7 @@
  */
 package operador;
 
-import New.OperadorAlocacao;
+import alocacao.OperadorAlocacao;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
