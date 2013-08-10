@@ -4,9 +4,12 @@
  */
 package operador;
 
+import New.OperadorAlocacao;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +17,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -50,6 +55,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Operador.findByNumeroRg", query = "SELECT o FROM Operador o WHERE o.numeroRg = :numeroRg"),
     @NamedQuery(name = "Operador.findByNumeroCpf", query = "SELECT o FROM Operador o WHERE o.numeroCpf = :numeroCpf")})
 public class Operador implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "operadorId")
+    private Collection<OperadorAlocacao> operadorAlocacaoCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -307,6 +314,15 @@ public class Operador implements Serializable {
     @Override
     public String toString() {
         return "operador.Operador[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<OperadorAlocacao> getOperadorAlocacaoCollection() {
+        return operadorAlocacaoCollection;
+    }
+
+    public void setOperadorAlocacaoCollection(Collection<OperadorAlocacao> operadorAlocacaoCollection) {
+        this.operadorAlocacaoCollection = operadorAlocacaoCollection;
     }
     
 }

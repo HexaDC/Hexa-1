@@ -4,20 +4,25 @@
  */
 package tipoAtendimento;
 
+import atendimento.Atendimento;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import procedimento.Procedimento;
 
 /**
@@ -33,6 +38,10 @@ import procedimento.Procedimento;
     @NamedQuery(name = "TipoAtendimento.findByCodigo", query = "SELECT t FROM TipoAtendimento t WHERE t.codigo = :codigo"),
     @NamedQuery(name = "TipoAtendimento.findByDescricao", query = "SELECT t FROM TipoAtendimento t WHERE t.descricao = :descricao")})
 public class TipoAtendimento implements Serializable {
+    @ManyToMany(mappedBy = "tipoAtendimentoCollection")
+    private Collection<Procedimento> procedimentoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoAtendimentoId")
+    private Collection<Atendimento> atendimentoCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -109,6 +118,24 @@ public class TipoAtendimento implements Serializable {
     @Override
     public String toString() {
         return "tipoAtendimento.TipoAtendimento[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Procedimento> getProcedimentoCollection() {
+        return procedimentoCollection;
+    }
+
+    public void setProcedimentoCollection(Collection<Procedimento> procedimentoCollection) {
+        this.procedimentoCollection = procedimentoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Atendimento> getAtendimentoCollection() {
+        return atendimentoCollection;
+    }
+
+    public void setAtendimentoCollection(Collection<Atendimento> atendimentoCollection) {
+        this.atendimentoCollection = atendimentoCollection;
     }
     
 }

@@ -5,6 +5,7 @@
 package procedimento;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,10 +13,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import tipoAtendimento.TipoAtendimento;
 
 /**
  *
@@ -30,6 +36,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Procedimento.findByCodigo", query = "SELECT p FROM Procedimento p WHERE p.codigo = :codigo"),
     @NamedQuery(name = "Procedimento.findByDescricao", query = "SELECT p FROM Procedimento p WHERE p.descricao = :descricao")})
 public class Procedimento implements Serializable {
+    @JoinTable(name = "atend_proced", joinColumns = {
+        @JoinColumn(name = "procedimento_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "tipo_atendimento_id", referencedColumnName = "id")})
+    @ManyToMany
+    private Collection<TipoAtendimento> tipoAtendimentoCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -97,5 +108,14 @@ public class Procedimento implements Serializable {
     @Override
     public String toString() {
         return "procedimento.Procedimento[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<TipoAtendimento> getTipoAtendimentoCollection() {
+        return tipoAtendimentoCollection;
+    }
+
+    public void setTipoAtendimentoCollection(Collection<TipoAtendimento> tipoAtendimentoCollection) {
+        this.tipoAtendimentoCollection = tipoAtendimentoCollection;
     }
 }

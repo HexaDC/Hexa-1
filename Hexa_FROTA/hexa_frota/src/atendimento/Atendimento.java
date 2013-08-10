@@ -4,24 +4,31 @@
  */
 package atendimento;
 
+import New.AlocacaoAtendimento;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import procedimento.Procedimento;
+import tipoAtendimento.TipoAtendimento;
 
 /**
  *
@@ -46,6 +53,11 @@ import procedimento.Procedimento;
     @NamedQuery(name = "Atendimento.findByCidade", query = "SELECT a FROM Atendimento a WHERE a.cidade = :cidade"),
     @NamedQuery(name = "Atendimento.findByEstado", query = "SELECT a FROM Atendimento a WHERE a.estado = :estado")})
 public class Atendimento implements Serializable {
+    @JoinColumn(name = "tipo_atendimento_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private TipoAtendimento tipoAtendimentoId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "atendimentoId")
+    private Collection<AlocacaoAtendimento> alocacaoAtendimentoCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -216,5 +228,22 @@ public class Atendimento implements Serializable {
     @Override
     public String toString() {
         return "atendimento.Atendimento[ id=" + id + " ]";
+    }
+
+    public TipoAtendimento getTipoAtendimentoId() {
+        return tipoAtendimentoId;
+    }
+
+    public void setTipoAtendimentoId(TipoAtendimento tipoAtendimentoId) {
+        this.tipoAtendimentoId = tipoAtendimentoId;
+    }
+
+    @XmlTransient
+    public Collection<AlocacaoAtendimento> getAlocacaoAtendimentoCollection() {
+        return alocacaoAtendimentoCollection;
+    }
+
+    public void setAlocacaoAtendimentoCollection(Collection<AlocacaoAtendimento> alocacaoAtendimentoCollection) {
+        this.alocacaoAtendimentoCollection = alocacaoAtendimentoCollection;
     }
 }
