@@ -9,7 +9,7 @@ import veiculocomplementos.VeiculoComplementos;
 import registropreventivo.RegistroPreventivo;
 import montadora.MontadoraVtr;
 import manutencao.Manutencao;
-import abastecimento.Abastecimeto;
+import abastecimento.Abastecimento;
 import alocacao.Alocacao;
 import java.io.Serializable;
 import java.util.Collection;
@@ -58,7 +58,7 @@ public class Veiculo implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "veiculoId")
     private Collection<Manutencao> manutencaoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "veiculoId")
-    private Collection<Abastecimeto> abastecimetoCollection;
+    private Collection<Abastecimento> abastecimetoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "veiculoId")
     private Collection<VeiculoComplementos> veiculoComplementosCollection;
     @JoinColumn(name = "status_vtr_id", referencedColumnName = "id")
@@ -121,11 +121,11 @@ public class Veiculo implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Abastecimeto> getAbastecimetoCollection() {
+    public Collection<Abastecimento> getAbastecimetoCollection() {
         return abastecimetoCollection;
     }
 
-    public void setAbastecimetoCollection(Collection<Abastecimeto> abastecimetoCollection) {
+    public void setAbastecimetoCollection(Collection<Abastecimento> abastecimetoCollection) {
         this.abastecimetoCollection = abastecimetoCollection;
     }
 

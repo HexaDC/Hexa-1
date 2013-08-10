@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package veiculo;
+package alocacao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,14 +13,14 @@ import util.ConnectionFactory;
  *
  * @author Guilherme Valarelli
  */
-public class VeiculoDAO {
+public class OperadorAlocacaoDAO {
 
     private Connection connection;
     //Query de cadastro
-    private static String INSERIR_VEICULO = "INSERT INTO veiculo () "
-            + "VALUES ()";
+    private static String INSERIR_OPERADOR_ALOCACAO = "INSERT INTO operador_alocacao () "
+            + "VALUES (?)";
 
-    public VeiculoDAO() {
+    public OperadorAlocacaoDAO() {
         try {
             this.connection = new ConnectionFactory().useConnection();
         } catch (Exception e) {
@@ -28,19 +28,15 @@ public class VeiculoDAO {
         }
     }
     
-    public void inserirVeiculo(Veiculo veiculo) {
+    public void inserirMudar(OperadorAlocacao operadoralocacao) {
         try {
 
             //PreparedStatement para a inserção
-            PreparedStatement stmt = connection.prepareStatement(INSERIR_VEICULO);
+            PreparedStatement stmt = connection.prepareStatement(INSERIR_OPERADOR_ALOCACAO);
 
             //Seta os valores
-            stmt.setString(1, veiculo.getChassi());
-            stmt.setInt(2, veiculo.getCodigo());
-            stmt.setInt(3, veiculo.getId());
-            stmt.setString(4, veiculo.getPlaca());
-            stmt.setObject(5, veiculo.getStatusVtrId());
-            stmt.setObject(6, veiculo.getMontadoraVtrId());
+            stmt.setString(1, operadoralocacao.getNome());
+           
             
 
 

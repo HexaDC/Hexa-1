@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package veiculo;
+package montadora;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,14 +13,14 @@ import util.ConnectionFactory;
  *
  * @author Guilherme Valarelli
  */
-public class VeiculoDAO {
+public class MontadoraDAO {
 
     private Connection connection;
     //Query de cadastro
-    private static String INSERIR_VEICULO = "INSERT INTO veiculo () "
-            + "VALUES ()";
+    private static String INSERIR_MONTADORA = "INSERT INTO montadora_vtr () "
+            + "VALUES (?)";
 
-    public VeiculoDAO() {
+    public MontadoraDAO() {
         try {
             this.connection = new ConnectionFactory().useConnection();
         } catch (Exception e) {
@@ -28,19 +28,18 @@ public class VeiculoDAO {
         }
     }
     
-    public void inserirVeiculo(Veiculo veiculo) {
+    public void inserirMudar(MontadoraVtr montadora) {
         try {
 
             //PreparedStatement para a inserção
-            PreparedStatement stmt = connection.prepareStatement(INSERIR_VEICULO);
+            PreparedStatement stmt = connection.prepareStatement(INSERIR_MONTADORA);
 
             //Seta os valores
-            stmt.setString(1, veiculo.getChassi());
-            stmt.setInt(2, veiculo.getCodigo());
-            stmt.setInt(3, veiculo.getId());
-            stmt.setString(4, veiculo.getPlaca());
-            stmt.setObject(5, veiculo.getStatusVtrId());
-            stmt.setObject(6, veiculo.getMontadoraVtrId());
+            stmt.setInt(1, montadora.getId());
+            stmt.setObject(2, montadora.getModeloVtrCollection());
+            stmt.setString(3, montadora.getNome());
+            stmt.setObject(4, montadora.getVeiculoCollection());
+           
             
 
 

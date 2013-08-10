@@ -5,7 +5,7 @@
 package abastecimento;
 
 import abastecimento.Contrato;
-import abastecimento.Abastecimeto;
+import abastecimento.Abastecimento;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -51,7 +51,7 @@ public class CombustivelContratado implements Serializable {
     @Column(name = "qtd_contratada")
     private Integer qtdContratada;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "combustivelContratadoId")
-    private Collection<Abastecimeto> abastecimetoCollection;
+    private Collection<Abastecimento> abastecimetoCollection;
     @JoinColumn(name = "contrato_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Contrato contratoId;
@@ -96,11 +96,11 @@ public class CombustivelContratado implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Abastecimeto> getAbastecimetoCollection() {
+    public Collection<Abastecimento> getAbastecimetoCollection() {
         return abastecimetoCollection;
     }
 
-    public void setAbastecimetoCollection(Collection<Abastecimeto> abastecimetoCollection) {
+    public void setAbastecimetoCollection(Collection<Abastecimento> abastecimetoCollection) {
         this.abastecimetoCollection = abastecimetoCollection;
     }
 

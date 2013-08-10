@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package veiculo;
+package atendimento;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,14 +13,14 @@ import util.ConnectionFactory;
  *
  * @author Guilherme Valarelli
  */
-public class VeiculoDAO {
+public class AtendimentoDAO {
 
     private Connection connection;
     //Query de cadastro
-    private static String INSERIR_VEICULO = "INSERT INTO veiculo () "
-            + "VALUES ()";
+    private static String INSERIR_ATENDIMENTO = "INSERT INTO atendimento () "
+            + "VALUES (?)";
 
-    public VeiculoDAO() {
+    public AtendimentoDAO() {
         try {
             this.connection = new ConnectionFactory().useConnection();
         } catch (Exception e) {
@@ -28,19 +28,15 @@ public class VeiculoDAO {
         }
     }
     
-    public void inserirVeiculo(Veiculo veiculo) {
+    public void inserirMudar(Atendimento atendimento) {
         try {
 
             //PreparedStatement para a inserção
-            PreparedStatement stmt = connection.prepareStatement(INSERIR_VEICULO);
+            PreparedStatement stmt = connection.prepareStatement(INSERIR_ATENDIMENTO);
 
             //Seta os valores
-            stmt.setString(1, veiculo.getChassi());
-            stmt.setInt(2, veiculo.getCodigo());
-            stmt.setInt(3, veiculo.getId());
-            stmt.setString(4, veiculo.getPlaca());
-            stmt.setObject(5, veiculo.getStatusVtrId());
-            stmt.setObject(6, veiculo.getMontadoraVtrId());
+            stmt.setString(1, atendimento.getNome());
+           
             
 
 

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package veiculo;
+package statusvtr;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,14 +13,14 @@ import util.ConnectionFactory;
  *
  * @author Guilherme Valarelli
  */
-public class VeiculoDAO {
+public class StatusVtrDAO {
 
     private Connection connection;
     //Query de cadastro
-    private static String INSERIR_VEICULO = "INSERT INTO veiculo () "
-            + "VALUES ()";
+    private static String INSERIR_STATUSVTR = "INSERT INTO status_vtr () "
+            + "VALUES (?)";
 
-    public VeiculoDAO() {
+    public StatusVtrDAO() {
         try {
             this.connection = new ConnectionFactory().useConnection();
         } catch (Exception e) {
@@ -28,19 +28,18 @@ public class VeiculoDAO {
         }
     }
     
-    public void inserirVeiculo(Veiculo veiculo) {
+    public void inserirMudar(StatusVtr statusvtr) {
         try {
 
             //PreparedStatement para a inserção
-            PreparedStatement stmt = connection.prepareStatement(INSERIR_VEICULO);
+            PreparedStatement stmt = connection.prepareStatement(INSERIR_STATUSVTR);
 
             //Seta os valores
-            stmt.setString(1, veiculo.getChassi());
-            stmt.setInt(2, veiculo.getCodigo());
-            stmt.setInt(3, veiculo.getId());
-            stmt.setString(4, veiculo.getPlaca());
-            stmt.setObject(5, veiculo.getStatusVtrId());
-            stmt.setObject(6, veiculo.getMontadoraVtrId());
+            stmt.setInt(1, statusvtr.getId());
+            stmt.setObject(2, statusvtr.getManutencaoCollection());
+            stmt.setString(3, statusvtr.getTipo());
+            stmt.setObject(4, statusvtr.getVeiculoCollection());
+           
             
 
 

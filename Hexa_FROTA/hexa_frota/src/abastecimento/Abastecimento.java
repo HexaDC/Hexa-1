@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Abastecimeto.findByQuilometragem", query = "SELECT a FROM Abastecimeto a WHERE a.quilometragem = :quilometragem"),
     @NamedQuery(name = "Abastecimeto.findByValorLitro", query = "SELECT a FROM Abastecimeto a WHERE a.valorLitro = :valorLitro"),
     @NamedQuery(name = "Abastecimeto.findByValorTotal", query = "SELECT a FROM Abastecimeto a WHERE a.valorTotal = :valorTotal")})
-public class Abastecimeto implements Serializable {
+public class Abastecimento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,10 +68,10 @@ public class Abastecimeto implements Serializable {
     @ManyToOne(optional = false)
     private CombustivelContratado combustivelContratadoId;
 
-    public Abastecimeto() {
+    public Abastecimento() {
     }
 
-    public Abastecimeto(Integer id) {
+    public Abastecimento(Integer id) {
         this.id = id;
     }
 
@@ -157,10 +157,10 @@ public class Abastecimeto implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Abastecimeto)) {
+        if (!(object instanceof Abastecimento)) {
             return false;
         }
-        Abastecimeto other = (Abastecimeto) object;
+        Abastecimento other = (Abastecimento) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
