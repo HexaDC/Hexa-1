@@ -4,8 +4,8 @@
  */
 package homeSystem;
 
-import modAtendimento.FormCadastrarApoioProcedimento;
-import modAtendimento.FormCadastrarProcedimento;
+import modAtendimento.FormApoioProcedimento;
+import modAtendimento.FormProcedimento;
 
 /**
  *
@@ -73,12 +73,12 @@ public class FormMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       FormCadastrarApoioProcedimento a = new FormCadastrarApoioProcedimento();
+       FormApoioProcedimento a = new FormApoioProcedimento();
        a.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       FormCadastrarProcedimento p = new FormCadastrarProcedimento();
+       FormProcedimento p = new FormProcedimento();
        p.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

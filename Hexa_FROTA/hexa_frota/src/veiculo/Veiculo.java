@@ -4,6 +4,11 @@
  */
 package veiculo;
 
+import statusvtr.StatusVtr;
+import veiculocomplementos.VeiculoComplementos;
+import registropreventivo.RegistroPreventivo;
+import montadora.MontadoraVtr;
+import manutencao.Manutencao;
 import abastecimento.Abastecimeto;
 import alocacao.Alocacao;
 import java.io.Serializable;
