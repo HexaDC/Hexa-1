@@ -35,12 +35,28 @@ public class VeiculoDAO {
             PreparedStatement stmt = connection.prepareStatement(INSERIR_VEICULO);
 
             //Seta os valores
-            stmt.setString(1, veiculo.getChassi());
-            stmt.setInt(2, veiculo.getCodigo());
-            stmt.setInt(3, veiculo.getId());
-            stmt.setString(4, veiculo.getPlaca());
-            stmt.setObject(5, veiculo.getStatusVtrId());
-            stmt.setObject(6, veiculo.getMontadoraVtrId());
+            
+            stmt.setString(1, veiculo.getAdicionais());
+            stmt.setInt(2, veiculo.getAno());
+            stmt.setInt(3, veiculo.getAnoFabricado());
+            stmt.setDouble(4, veiculo.getCapacidadeTanque());
+            stmt.setString(5, veiculo.getChassi());
+            stmt.setInt(6, veiculo.getCilindradas());
+            stmt.setInt(7, veiculo.getCodigo());
+            stmt.setString(8, veiculo.getCor());
+            stmt.setInt(9, veiculo.getId());
+            stmt.setDouble(10, veiculo.getMediaConsumo());
+            stmt.setInt(11, veiculo.getNumCilindros());
+            stmt.setInt(12, veiculo.getNumMotor());
+            stmt.setInt(13, veiculo.getNumRenavam());
+            stmt.setString(14, veiculo.getObservacao());
+            stmt.setString(15, veiculo.getPlaca());
+            stmt.setInt(16, veiculo.getPortas());
+            stmt.setInt(17, veiculo.getPotencia());
+            stmt.setInt(18, veiculo.getStatusVtrId());
+            stmt.setString(19, veiculo.getTipoCambio());
+            stmt.setString(20, veiculo.getTipoCombustivel());
+            stmt.setInt(21, veiculo.getVeiculoId());
             
 
 

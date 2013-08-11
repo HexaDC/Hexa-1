@@ -33,6 +33,7 @@ public class FormMonitorarFrota extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Foto_do_Monitor = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,6 +77,9 @@ public class FormMonitorarFrota extends javax.swing.JFrame {
 
         getContentPane().add(Foto_do_Monitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        jButton1.setText("Adicionar Atendimento");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 420, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -115,6 +119,7 @@ public class FormMonitorarFrota extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Foto_do_Monitor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;

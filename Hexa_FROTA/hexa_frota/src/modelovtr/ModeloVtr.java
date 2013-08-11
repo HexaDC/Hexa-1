@@ -5,6 +5,7 @@
 package modelovtr;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +16,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import montadora.MontadoraVtr;
+import veiculo.Veiculo;
 
 /**
  *
@@ -31,6 +35,8 @@ import montadora.MontadoraVtr;
     @NamedQuery(name = "ModeloVtr.findById", query = "SELECT m FROM ModeloVtr m WHERE m.id = :id"),
     @NamedQuery(name = "ModeloVtr.findByNome", query = "SELECT m FROM ModeloVtr m WHERE m.nome = :nome")})
 public class ModeloVtr implements Serializable {
+    @OneToMany(mappedBy = "modeloVtr")
+    private Collection<Veiculo> veiculoCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -97,6 +103,15 @@ public class ModeloVtr implements Serializable {
     @Override
     public String toString() {
         return "New.ModeloVtr[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Veiculo> getVeiculoCollection() {
+        return veiculoCollection;
+    }
+
+    public void setVeiculoCollection(Collection<Veiculo> veiculoCollection) {
+        this.veiculoCollection = veiculoCollection;
     }
     
 }

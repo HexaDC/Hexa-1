@@ -26,17 +26,148 @@ public class FormVeiculo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        rdoHabilitacao = new javax.swing.JRadioButton();
+        rdoNome = new javax.swing.JRadioButton();
+        rdoMatricula = new javax.swing.JRadioButton();
+        txtPesquisa = new javax.swing.JTextField();
+        rdoListar = new javax.swing.JRadioButton();
+        btnPesquisa = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblOperador = new javax.swing.JTable();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setText("Veiculo");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setText("Pesquisar por:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 48, -1, -1));
+
+        rdoHabilitacao.setText("Nº Frota");
+        add(rdoHabilitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 44, -1, -1));
+
+        rdoNome.setText("Nome (operador)");
+        add(rdoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 44, -1, -1));
+
+        rdoMatricula.setText("Nº Matrícula");
+        add(rdoMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 44, -1, -1));
+        add(txtPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 69, 700, -1));
+
+        rdoListar.setText("Listar Todos");
+        add(rdoListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 44, -1, -1));
+
+        btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaActionPerformed(evt);
+            }
+        });
+        add(btnPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 70, 60, 20));
+
+        tblOperador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "id", "Nº Matrícula", "Nome", "Nº Habilitação", "Categoria", "Situação"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblOperador.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblOperador);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 95, 704, 100));
+
+        btnEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnEditar.setText("Editar");
+        add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 114, 69, -1));
+
+        btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnExcluir.setText("Excluir");
+        add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 143, -1, -1));
+
+        btnLimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnLimpar.setText("Limpar");
+        add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 172, -1, -1));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField1.setText("Nº Frota");
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, -1));
+
+        jTextField2.setText("Placa");
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 50, -1));
+
+        jTextField3.setText("Chassi");
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        jTextField4.setText("Montadora");
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 70, -1));
+
+        jTabbedPane1.addTab("tab1", jPanel1);
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jTabbedPane1.addTab("tab2", jPanel2);
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jTabbedPane1.addTab("tab3", jPanel3);
+
+        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 790, 310));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
+        try {
+            preenche_jtable();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }//GEN-LAST:event_btnPesquisaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnPesquisa;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JRadioButton rdoHabilitacao;
+    private javax.swing.JRadioButton rdoListar;
+    private javax.swing.JRadioButton rdoMatricula;
+    private javax.swing.JRadioButton rdoNome;
+    private javax.swing.JTable tblOperador;
+    private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,1528 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.2
+-- Dumped by pg_dump version 9.2.2
+-- Started on 2013-08-11 13:00:25
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 194 (class 3079 OID 11639)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2059 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 161 (class 1259 OID 16394)
+-- Name: abastecimeto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE abastecimeto (
+    id integer NOT NULL,
+    combustivel_contratado_id integer NOT NULL,
+    veiculo_id integer NOT NULL,
+    data_abastecimento date,
+    hora_abastecimento time without time zone,
+    qtd_litros double precision,
+    quilometragem double precision,
+    valor_litro numeric,
+    valor_total numeric
+);
+
+
+ALTER TABLE public.abastecimeto OWNER TO postgres;
+
+--
+-- TOC entry 162 (class 1259 OID 16400)
+-- Name: abastecimeto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE abastecimeto_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.abastecimeto_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2060 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: abastecimeto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE abastecimeto_id_seq OWNED BY abastecimeto.id;
+
+
+--
+-- TOC entry 163 (class 1259 OID 16402)
+-- Name: alocacao; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE alocacao (
+    id integer NOT NULL,
+    veiculo_id integer NOT NULL,
+    dt_inicio_alocacao date,
+    hora_inicio_alocacao time without time zone,
+    km_inicial double precision,
+    roteiro character varying(255),
+    km_rodados double precision,
+    data_final_alocacao date,
+    hora_final_alocacao time without time zone,
+    status integer,
+    km_final double precision
+);
+
+
+ALTER TABLE public.alocacao OWNER TO postgres;
+
+--
+-- TOC entry 164 (class 1259 OID 16405)
+-- Name: alocacao_atendimento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE alocacao_atendimento (
+    id integer NOT NULL,
+    atendimento_id integer NOT NULL,
+    alocacao_id integer NOT NULL
+);
+
+
+ALTER TABLE public.alocacao_atendimento OWNER TO postgres;
+
+--
+-- TOC entry 165 (class 1259 OID 16408)
+-- Name: alocacao_atendimento_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE alocacao_atendimento_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.alocacao_atendimento_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2061 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: alocacao_atendimento_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE alocacao_atendimento_id_seq OWNED BY alocacao_atendimento.id;
+
+
+--
+-- TOC entry 166 (class 1259 OID 16410)
+-- Name: alocacao_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE alocacao_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.alocacao_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2062 (class 0 OID 0)
+-- Dependencies: 166
+-- Name: alocacao_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE alocacao_id_seq OWNED BY alocacao.id;
+
+
+--
+-- TOC entry 167 (class 1259 OID 16412)
+-- Name: atend_proced; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE atend_proced (
+    procedimento_id integer,
+    tipo_atendimento_id integer
+);
+
+
+ALTER TABLE public.atend_proced OWNER TO postgres;
+
+--
+-- TOC entry 168 (class 1259 OID 16415)
+-- Name: atendimento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE atendimento (
+    id integer NOT NULL,
+    tipo_atendimento_id integer NOT NULL,
+    numero_atendimento integer,
+    data_inicial_atendimento date,
+    hora_inicial_atendimento character varying(20),
+    data_final_atendimento date,
+    hora_final_atendimento character varying(20),
+    bairro character varying(80),
+    complemento character varying(255),
+    descricao text,
+    status integer,
+    logradouro character varying(80),
+    cidade character varying(80),
+    estado character varying(2)
+);
+
+
+ALTER TABLE public.atendimento OWNER TO postgres;
+
+--
+-- TOC entry 169 (class 1259 OID 16421)
+-- Name: atendimento_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE atendimento_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.atendimento_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2063 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: atendimento_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE atendimento_id_seq OWNED BY atendimento.id;
+
+
+--
+-- TOC entry 170 (class 1259 OID 16423)
+-- Name: combustivel_contratado; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE combustivel_contratado (
+    id integer NOT NULL,
+    contrato_id integer NOT NULL,
+    tipo character varying(80),
+    distribuidora character varying(100),
+    qtd_contratada integer
+);
+
+
+ALTER TABLE public.combustivel_contratado OWNER TO postgres;
+
+--
+-- TOC entry 171 (class 1259 OID 16426)
+-- Name: combustivel_contratado_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE combustivel_contratado_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.combustivel_contratado_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2064 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: combustivel_contratado_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE combustivel_contratado_id_seq OWNED BY combustivel_contratado.id;
+
+
+--
+-- TOC entry 172 (class 1259 OID 16428)
+-- Name: contrato; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE contrato (
+    id integer NOT NULL,
+    num_contrato character varying(80),
+    data_vigencia_inicial date,
+    data_vigencia_final date
+);
+
+
+ALTER TABLE public.contrato OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 16431)
+-- Name: contrato_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE contrato_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.contrato_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2065 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: contrato_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE contrato_id_seq OWNED BY contrato.id;
+
+
+--
+-- TOC entry 174 (class 1259 OID 16433)
+-- Name: manutencao; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE manutencao (
+    id integer NOT NULL,
+    status_vtr_id integer NOT NULL,
+    registro_preventivo_id integer,
+    veiculo_id integer NOT NULL,
+    data_inicial date,
+    hora_inicial time without time zone,
+    data_final date,
+    hora_final time without time zone,
+    observacao text
+);
+
+
+ALTER TABLE public.manutencao OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 16439)
+-- Name: manutencao_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE manutencao_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.manutencao_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2066 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: manutencao_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE manutencao_id_seq OWNED BY manutencao.id;
+
+
+--
+-- TOC entry 176 (class 1259 OID 16441)
+-- Name: modelo_vtr; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE modelo_vtr (
+    id integer NOT NULL,
+    montadora_vtr_id integer NOT NULL,
+    nome character varying(80)
+);
+
+
+ALTER TABLE public.modelo_vtr OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 16444)
+-- Name: modelo_vtr_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE modelo_vtr_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.modelo_vtr_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2067 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: modelo_vtr_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE modelo_vtr_id_seq OWNED BY modelo_vtr.id;
+
+
+--
+-- TOC entry 178 (class 1259 OID 16446)
+-- Name: montadora_vtr; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE montadora_vtr (
+    id integer NOT NULL,
+    nome character varying(80)
+);
+
+
+ALTER TABLE public.montadora_vtr OWNER TO postgres;
+
+--
+-- TOC entry 179 (class 1259 OID 16449)
+-- Name: montadora_vtr_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE montadora_vtr_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.montadora_vtr_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2068 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: montadora_vtr_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE montadora_vtr_id_seq OWNED BY montadora_vtr.id;
+
+
+--
+-- TOC entry 180 (class 1259 OID 16451)
+-- Name: operador; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE operador (
+    id integer NOT NULL,
+    nome character varying(80),
+    matricula character varying(60),
+    habilitacao character varying(20) NOT NULL,
+    categoria character varying(10) NOT NULL,
+    dt_vencimento_hab date NOT NULL,
+    tipo_sanguineo character varying(10),
+    logradouro character varying(80),
+    bairro character varying(80),
+    numero character varying(20),
+    complemento character varying(80),
+    cidade character varying(80),
+    estado character varying(80),
+    tel_celular character varying(20),
+    tel_residencia character varying(20),
+    status integer,
+    data_cadastro date,
+    observacao text,
+    foto character varying(80),
+    numero_rg character varying(15),
+    numero_cpf character varying(16)
+);
+
+
+ALTER TABLE public.operador OWNER TO postgres;
+
+--
+-- TOC entry 181 (class 1259 OID 16457)
+-- Name: operador_alocacao; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE operador_alocacao (
+    id integer NOT NULL,
+    alocacao_id integer NOT NULL,
+    operador_id integer NOT NULL
+);
+
+
+ALTER TABLE public.operador_alocacao OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 16460)
+-- Name: operador_alocacao_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE operador_alocacao_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.operador_alocacao_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2069 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: operador_alocacao_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE operador_alocacao_id_seq OWNED BY operador_alocacao.id;
+
+
+--
+-- TOC entry 183 (class 1259 OID 16462)
+-- Name: operador_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE operador_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.operador_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2070 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: operador_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE operador_id_seq OWNED BY operador.id;
+
+
+--
+-- TOC entry 184 (class 1259 OID 16464)
+-- Name: procedimento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE procedimento (
+    id integer NOT NULL,
+    codigo character varying(80),
+    descricao text
+);
+
+
+ALTER TABLE public.procedimento OWNER TO postgres;
+
+--
+-- TOC entry 185 (class 1259 OID 16470)
+-- Name: procedimento_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE procedimento_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.procedimento_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2071 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: procedimento_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE procedimento_id_seq OWNED BY procedimento.id;
+
+
+--
+-- TOC entry 186 (class 1259 OID 16472)
+-- Name: registro_preventivo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE registro_preventivo (
+    id integer NOT NULL,
+    veiculo_id integer NOT NULL,
+    tipo_preventivo character varying(100),
+    periodo character varying(80),
+    km_prevencao double precision
+);
+
+
+ALTER TABLE public.registro_preventivo OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 16475)
+-- Name: registro_preventivo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE registro_preventivo_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.registro_preventivo_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2072 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: registro_preventivo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE registro_preventivo_id_seq OWNED BY registro_preventivo.id;
+
+
+--
+-- TOC entry 188 (class 1259 OID 16477)
+-- Name: status_vtr; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE status_vtr (
+    id integer NOT NULL,
+    tipo character varying(80)
+);
+
+
+ALTER TABLE public.status_vtr OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 16480)
+-- Name: status_vtr_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE status_vtr_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.status_vtr_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2073 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: status_vtr_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE status_vtr_id_seq OWNED BY status_vtr.id;
+
+
+--
+-- TOC entry 190 (class 1259 OID 16482)
+-- Name: tipo_atendimento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tipo_atendimento (
+    id integer NOT NULL,
+    codigo character varying(80),
+    descricao text
+);
+
+
+ALTER TABLE public.tipo_atendimento OWNER TO postgres;
+
+--
+-- TOC entry 191 (class 1259 OID 16488)
+-- Name: tipo_atendimento_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tipo_atendimento_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tipo_atendimento_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2074 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: tipo_atendimento_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tipo_atendimento_id_seq OWNED BY tipo_atendimento.id;
+
+
+--
+-- TOC entry 192 (class 1259 OID 16493)
+-- Name: veiculo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE veiculo (
+    id integer NOT NULL,
+    veiculo_id integer NOT NULL,
+    ano integer,
+    ano_fabricado integer,
+    portas integer,
+    cor character varying(50),
+    num_renavam integer,
+    num_motor integer,
+    cilindradas integer,
+    num_cilindros integer,
+    potencia integer,
+    tipo_cambio character varying(80),
+    observacao text,
+    capacidade_tanque double precision,
+    adicionais character varying(80),
+    media_consumo double precision,
+    tipo_combustivel character varying(80),
+    status_vtr_id integer,
+    placa character varying(50),
+    chassi character varying(50),
+    codigo integer,
+    modelo_vtr integer
+);
+
+
+ALTER TABLE public.veiculo OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 16499)
+-- Name: veiculo_complementos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE veiculo_complementos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.veiculo_complementos_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2075 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: veiculo_complementos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE veiculo_complementos_id_seq OWNED BY veiculo.id;
+
+
+--
+-- TOC entry 1949 (class 2604 OID 16503)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY abastecimeto ALTER COLUMN id SET DEFAULT nextval('abastecimeto_id_seq'::regclass);
+
+
+--
+-- TOC entry 1950 (class 2604 OID 16504)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY alocacao ALTER COLUMN id SET DEFAULT nextval('alocacao_id_seq'::regclass);
+
+
+--
+-- TOC entry 1951 (class 2604 OID 16505)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY alocacao_atendimento ALTER COLUMN id SET DEFAULT nextval('alocacao_atendimento_id_seq'::regclass);
+
+
+--
+-- TOC entry 1952 (class 2604 OID 16506)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY atendimento ALTER COLUMN id SET DEFAULT nextval('atendimento_id_seq'::regclass);
+
+
+--
+-- TOC entry 1953 (class 2604 OID 16507)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY combustivel_contratado ALTER COLUMN id SET DEFAULT nextval('combustivel_contratado_id_seq'::regclass);
+
+
+--
+-- TOC entry 1954 (class 2604 OID 16508)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY contrato ALTER COLUMN id SET DEFAULT nextval('contrato_id_seq'::regclass);
+
+
+--
+-- TOC entry 1955 (class 2604 OID 16509)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY manutencao ALTER COLUMN id SET DEFAULT nextval('manutencao_id_seq'::regclass);
+
+
+--
+-- TOC entry 1956 (class 2604 OID 16510)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY modelo_vtr ALTER COLUMN id SET DEFAULT nextval('modelo_vtr_id_seq'::regclass);
+
+
+--
+-- TOC entry 1957 (class 2604 OID 16511)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY montadora_vtr ALTER COLUMN id SET DEFAULT nextval('montadora_vtr_id_seq'::regclass);
+
+
+--
+-- TOC entry 1958 (class 2604 OID 16512)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY operador ALTER COLUMN id SET DEFAULT nextval('operador_id_seq'::regclass);
+
+
+--
+-- TOC entry 1959 (class 2604 OID 16513)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY operador_alocacao ALTER COLUMN id SET DEFAULT nextval('operador_alocacao_id_seq'::regclass);
+
+
+--
+-- TOC entry 1960 (class 2604 OID 16514)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY procedimento ALTER COLUMN id SET DEFAULT nextval('procedimento_id_seq'::regclass);
+
+
+--
+-- TOC entry 1961 (class 2604 OID 16515)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY registro_preventivo ALTER COLUMN id SET DEFAULT nextval('registro_preventivo_id_seq'::regclass);
+
+
+--
+-- TOC entry 1962 (class 2604 OID 16516)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY status_vtr ALTER COLUMN id SET DEFAULT nextval('status_vtr_id_seq'::regclass);
+
+
+--
+-- TOC entry 1963 (class 2604 OID 16517)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tipo_atendimento ALTER COLUMN id SET DEFAULT nextval('tipo_atendimento_id_seq'::regclass);
+
+
+--
+-- TOC entry 1964 (class 2604 OID 16519)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY veiculo ALTER COLUMN id SET DEFAULT nextval('veiculo_complementos_id_seq'::regclass);
+
+
+--
+-- TOC entry 2019 (class 0 OID 16394)
+-- Dependencies: 161
+-- Data for Name: abastecimeto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY abastecimeto (id, combustivel_contratado_id, veiculo_id, data_abastecimento, hora_abastecimento, qtd_litros, quilometragem, valor_litro, valor_total) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2076 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: abastecimeto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('abastecimeto_id_seq', 1, false);
+
+
+--
+-- TOC entry 2021 (class 0 OID 16402)
+-- Dependencies: 163
+-- Data for Name: alocacao; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY alocacao (id, veiculo_id, dt_inicio_alocacao, hora_inicio_alocacao, km_inicial, roteiro, km_rodados, data_final_alocacao, hora_final_alocacao, status, km_final) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2022 (class 0 OID 16405)
+-- Dependencies: 164
+-- Data for Name: alocacao_atendimento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY alocacao_atendimento (id, atendimento_id, alocacao_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2077 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: alocacao_atendimento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('alocacao_atendimento_id_seq', 1, false);
+
+
+--
+-- TOC entry 2078 (class 0 OID 0)
+-- Dependencies: 166
+-- Name: alocacao_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('alocacao_id_seq', 1, false);
+
+
+--
+-- TOC entry 2025 (class 0 OID 16412)
+-- Dependencies: 167
+-- Data for Name: atend_proced; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY atend_proced (procedimento_id, tipo_atendimento_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2026 (class 0 OID 16415)
+-- Dependencies: 168
+-- Data for Name: atendimento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY atendimento (id, tipo_atendimento_id, numero_atendimento, data_inicial_atendimento, hora_inicial_atendimento, data_final_atendimento, hora_final_atendimento, bairro, complemento, descricao, status, logradouro, cidade, estado) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2079 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: atendimento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('atendimento_id_seq', 1, false);
+
+
+--
+-- TOC entry 2028 (class 0 OID 16423)
+-- Dependencies: 170
+-- Data for Name: combustivel_contratado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY combustivel_contratado (id, contrato_id, tipo, distribuidora, qtd_contratada) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2080 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: combustivel_contratado_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('combustivel_contratado_id_seq', 1, false);
+
+
+--
+-- TOC entry 2030 (class 0 OID 16428)
+-- Dependencies: 172
+-- Data for Name: contrato; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY contrato (id, num_contrato, data_vigencia_inicial, data_vigencia_final) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2081 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: contrato_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('contrato_id_seq', 1, false);
+
+
+--
+-- TOC entry 2032 (class 0 OID 16433)
+-- Dependencies: 174
+-- Data for Name: manutencao; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY manutencao (id, status_vtr_id, registro_preventivo_id, veiculo_id, data_inicial, hora_inicial, data_final, hora_final, observacao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2082 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: manutencao_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('manutencao_id_seq', 1, false);
+
+
+--
+-- TOC entry 2034 (class 0 OID 16441)
+-- Dependencies: 176
+-- Data for Name: modelo_vtr; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY modelo_vtr (id, montadora_vtr_id, nome) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2083 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: modelo_vtr_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('modelo_vtr_id_seq', 1, false);
+
+
+--
+-- TOC entry 2036 (class 0 OID 16446)
+-- Dependencies: 178
+-- Data for Name: montadora_vtr; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY montadora_vtr (id, nome) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2084 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: montadora_vtr_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('montadora_vtr_id_seq', 1, false);
+
+
+--
+-- TOC entry 2038 (class 0 OID 16451)
+-- Dependencies: 180
+-- Data for Name: operador; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY operador (id, nome, matricula, habilitacao, categoria, dt_vencimento_hab, tipo_sanguineo, logradouro, bairro, numero, complemento, cidade, estado, tel_celular, tel_residencia, status, data_cadastro, observacao, foto, numero_rg, numero_cpf) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2039 (class 0 OID 16457)
+-- Dependencies: 181
+-- Data for Name: operador_alocacao; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY operador_alocacao (id, alocacao_id, operador_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2085 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: operador_alocacao_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('operador_alocacao_id_seq', 1, false);
+
+
+--
+-- TOC entry 2086 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: operador_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('operador_id_seq', 1, false);
+
+
+--
+-- TOC entry 2042 (class 0 OID 16464)
+-- Dependencies: 184
+-- Data for Name: procedimento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY procedimento (id, codigo, descricao) FROM stdin;
+4	0345	EDTAR 02
+\.
+
+
+--
+-- TOC entry 2087 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: procedimento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('procedimento_id_seq', 4, true);
+
+
+--
+-- TOC entry 2044 (class 0 OID 16472)
+-- Dependencies: 186
+-- Data for Name: registro_preventivo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY registro_preventivo (id, veiculo_id, tipo_preventivo, periodo, km_prevencao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2088 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: registro_preventivo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('registro_preventivo_id_seq', 1, false);
+
+
+--
+-- TOC entry 2046 (class 0 OID 16477)
+-- Dependencies: 188
+-- Data for Name: status_vtr; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY status_vtr (id, tipo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2089 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: status_vtr_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('status_vtr_id_seq', 1, false);
+
+
+--
+-- TOC entry 2048 (class 0 OID 16482)
+-- Dependencies: 190
+-- Data for Name: tipo_atendimento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tipo_atendimento (id, codigo, descricao) FROM stdin;
+1	123	TESTE 001
+\.
+
+
+--
+-- TOC entry 2090 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: tipo_atendimento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tipo_atendimento_id_seq', 1, true);
+
+
+--
+-- TOC entry 2050 (class 0 OID 16493)
+-- Dependencies: 192
+-- Data for Name: veiculo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY veiculo (id, veiculo_id, ano, ano_fabricado, portas, cor, num_renavam, num_motor, cilindradas, num_cilindros, potencia, tipo_cambio, observacao, capacidade_tanque, adicionais, media_consumo, tipo_combustivel, status_vtr_id, placa, chassi, codigo, modelo_vtr) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2091 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: veiculo_complementos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('veiculo_complementos_id_seq', 1, false);
+
+
+--
+-- TOC entry 1966 (class 2606 OID 16521)
+-- Name: abastecimento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY abastecimeto
+    ADD CONSTRAINT abastecimento_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1972 (class 2606 OID 16523)
+-- Name: alocacao_atendimento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY alocacao_atendimento
+    ADD CONSTRAINT alocacao_atendimento_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1969 (class 2606 OID 16525)
+-- Name: alocacao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY alocacao
+    ADD CONSTRAINT alocacao_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1974 (class 2606 OID 16527)
+-- Name: atendimento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY atendimento
+    ADD CONSTRAINT atendimento_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1976 (class 2606 OID 16529)
+-- Name: combustivel_contratado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY combustivel_contratado
+    ADD CONSTRAINT combustivel_contratado_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1978 (class 2606 OID 16531)
+-- Name: contrato_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY contrato
+    ADD CONSTRAINT contrato_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1981 (class 2606 OID 16533)
+-- Name: manutencao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY manutencao
+    ADD CONSTRAINT manutencao_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1983 (class 2606 OID 16535)
+-- Name: modelo_vtr_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY modelo_vtr
+    ADD CONSTRAINT modelo_vtr_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1985 (class 2606 OID 16537)
+-- Name: montadora_vtr_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY montadora_vtr
+    ADD CONSTRAINT montadora_vtr_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1989 (class 2606 OID 16539)
+-- Name: operador_alocacao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY operador_alocacao
+    ADD CONSTRAINT operador_alocacao_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1987 (class 2606 OID 16541)
+-- Name: operador_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY operador
+    ADD CONSTRAINT operador_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1991 (class 2606 OID 16543)
+-- Name: procedimento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY procedimento
+    ADD CONSTRAINT procedimento_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1994 (class 2606 OID 16545)
+-- Name: registro_preventivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY registro_preventivo
+    ADD CONSTRAINT registro_preventivo_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1996 (class 2606 OID 16547)
+-- Name: status_vtr_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY status_vtr
+    ADD CONSTRAINT status_vtr_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1998 (class 2606 OID 16549)
+-- Name: tipo_atendimento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tipo_atendimento
+    ADD CONSTRAINT tipo_atendimento_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2001 (class 2606 OID 16551)
+-- Name: veiculo_complementos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY veiculo
+    ADD CONSTRAINT veiculo_complementos_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1967 (class 1259 OID 16672)
+-- Name: fki_abastecimento_veiculo_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX fki_abastecimento_veiculo_id ON abastecimeto USING btree (veiculo_id);
+
+
+--
+-- TOC entry 1999 (class 1259 OID 16715)
+-- Name: fki_modelo_vtr_fkey; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX fki_modelo_vtr_fkey ON veiculo USING btree (modelo_vtr);
+
+
+--
+-- TOC entry 1979 (class 1259 OID 16683)
+-- Name: fki_veiculo_fkey; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX fki_veiculo_fkey ON manutencao USING btree (veiculo_id);
+
+
+--
+-- TOC entry 1992 (class 1259 OID 16709)
+-- Name: fki_veiculo_fkey_; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX fki_veiculo_fkey_ ON registro_preventivo USING btree (veiculo_id);
+
+
+--
+-- TOC entry 1970 (class 1259 OID 16661)
+-- Name: fki_veiculo_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX fki_veiculo_id ON alocacao USING btree (veiculo_id);
+
+
+--
+-- TOC entry 2005 (class 2606 OID 16554)
+-- Name: alocacao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY alocacao_atendimento
+    ADD CONSTRAINT alocacao_fkey FOREIGN KEY (alocacao_id) REFERENCES alocacao(id);
+
+
+--
+-- TOC entry 2015 (class 2606 OID 16559)
+-- Name: alocacao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY operador_alocacao
+    ADD CONSTRAINT alocacao_fkey FOREIGN KEY (alocacao_id) REFERENCES alocacao(id);
+
+
+--
+-- TOC entry 2006 (class 2606 OID 16564)
+-- Name: atendimento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY alocacao_atendimento
+    ADD CONSTRAINT atendimento_fkey FOREIGN KEY (atendimento_id) REFERENCES atendimento(id);
+
+
+--
+-- TOC entry 2002 (class 2606 OID 16569)
+-- Name: combustivel_contratado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY abastecimeto
+    ADD CONSTRAINT combustivel_contratado_fkey FOREIGN KEY (combustivel_contratado_id) REFERENCES combustivel_contratado(id);
+
+
+--
+-- TOC entry 2010 (class 2606 OID 16574)
+-- Name: contrato_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY combustivel_contratado
+    ADD CONSTRAINT contrato_fkey FOREIGN KEY (contrato_id) REFERENCES contrato(id);
+
+
+--
+-- TOC entry 2018 (class 2606 OID 16710)
+-- Name: modelo_vtr_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY veiculo
+    ADD CONSTRAINT modelo_vtr_fkey FOREIGN KEY (modelo_vtr) REFERENCES modelo_vtr(id);
+
+
+--
+-- TOC entry 2014 (class 2606 OID 16579)
+-- Name: montadora_vtr_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY modelo_vtr
+    ADD CONSTRAINT montadora_vtr_fkey FOREIGN KEY (montadora_vtr_id) REFERENCES montadora_vtr(id);
+
+
+--
+-- TOC entry 2016 (class 2606 OID 16589)
+-- Name: operador_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY operador_alocacao
+    ADD CONSTRAINT operador_fkey FOREIGN KEY (operador_id) REFERENCES operador(id);
+
+
+--
+-- TOC entry 2007 (class 2606 OID 16594)
+-- Name: procedimento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY atend_proced
+    ADD CONSTRAINT procedimento_fkey FOREIGN KEY (procedimento_id) REFERENCES procedimento(id);
+
+
+--
+-- TOC entry 2011 (class 2606 OID 16599)
+-- Name: registro_preventivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY manutencao
+    ADD CONSTRAINT registro_preventivo_fkey FOREIGN KEY (registro_preventivo_id) REFERENCES registro_preventivo(id);
+
+
+--
+-- TOC entry 2012 (class 2606 OID 16609)
+-- Name: status_vtr_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY manutencao
+    ADD CONSTRAINT status_vtr_fkey FOREIGN KEY (status_vtr_id) REFERENCES status_vtr(id);
+
+
+--
+-- TOC entry 2009 (class 2606 OID 16614)
+-- Name: tipo_atendimento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY atendimento
+    ADD CONSTRAINT tipo_atendimento_fkey FOREIGN KEY (tipo_atendimento_id) REFERENCES tipo_atendimento(id);
+
+
+--
+-- TOC entry 2008 (class 2606 OID 16619)
+-- Name: tipo_atendimento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY atend_proced
+    ADD CONSTRAINT tipo_atendimento_fkey FOREIGN KEY (tipo_atendimento_id) REFERENCES tipo_atendimento(id);
+
+
+--
+-- TOC entry 2013 (class 2606 OID 16678)
+-- Name: veiculo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY manutencao
+    ADD CONSTRAINT veiculo_fkey FOREIGN KEY (veiculo_id) REFERENCES veiculo(id);
+
+
+--
+-- TOC entry 2003 (class 2606 OID 16684)
+-- Name: veiculo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY abastecimeto
+    ADD CONSTRAINT veiculo_fkey FOREIGN KEY (veiculo_id) REFERENCES veiculo(id);
+
+
+--
+-- TOC entry 2004 (class 2606 OID 16689)
+-- Name: veiculo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY alocacao
+    ADD CONSTRAINT veiculo_fkey FOREIGN KEY (veiculo_id) REFERENCES veiculo(id);
+
+
+--
+-- TOC entry 2017 (class 2606 OID 16704)
+-- Name: veiculo_fkey_; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY registro_preventivo
+    ADD CONSTRAINT veiculo_fkey_ FOREIGN KEY (veiculo_id) REFERENCES veiculo(id);
+
+
+--
+-- TOC entry 2058 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2013-08-11 13:00:26
+
+--
+-- PostgreSQL database dump complete
+--
+

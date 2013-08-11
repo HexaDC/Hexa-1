@@ -19,6 +19,7 @@
     <class>veiculocomplementos.VeiculoComplementos</class>
     <class>statusvtr.StatusVtr</class>
     <class>abastecimento.Abastecimento</class>
+    <class>veiculo.Veiculo</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hexa_frota"/>
       <property name="javax.persistence.jdbc.password" value="postgres"/>

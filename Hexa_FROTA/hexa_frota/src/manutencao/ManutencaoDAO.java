@@ -28,7 +28,7 @@ public class ManutencaoDAO {
         }
     }
     
-    public void inserirMudar(Mudar manutencao) {
+    public void inserirMudar(Manutencao manutencao) {
         try {
 
             //PreparedStatement para a inserção
