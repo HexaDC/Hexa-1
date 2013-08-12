@@ -35,7 +35,9 @@ public class OperadorAlocacaoDAO {
             PreparedStatement stmt = connection.prepareStatement(INSERIR_OPERADOR_ALOCACAO);
 
             //Seta os valores
-            stmt.setString(1, operadoralocacao.getNome());
+            stmt.setObject(1, operadoralocacao.getAlocacaoId());
+            stmt.setObject(2, operadoralocacao.getId());
+            stmt.setObject(3, operadoralocacao.getOperadorId());
            
             
 

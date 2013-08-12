@@ -35,7 +35,9 @@ public class AlocacaoAtendimentoDAO {
             PreparedStatement stmt = connection.prepareStatement(INSERIR_ALOCACAO_ATENDIMENTO);
 
             //Seta os valores
-            stmt.setString(1, alocacaoatendimento.getNome());
+            stmt.setObject(1, alocacaoatendimento.getAlocacaoId());
+            stmt.setObject(2, alocacaoatendimento.getAtendimentoId());
+            stmt.setInt(3, alocacaoatendimento.getId());
            
             
 

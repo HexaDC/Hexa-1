@@ -170,4 +170,8 @@ public class FormVeiculo extends javax.swing.JPanel {
     private javax.swing.JTable tblOperador;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
+
+    private void preenche_jtable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

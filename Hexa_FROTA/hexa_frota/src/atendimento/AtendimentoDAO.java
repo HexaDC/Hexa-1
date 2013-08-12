@@ -5,6 +5,7 @@
 package atendimento;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import util.ConnectionFactory;
@@ -35,7 +36,21 @@ public class AtendimentoDAO {
             PreparedStatement stmt = connection.prepareStatement(INSERIR_ATENDIMENTO);
 
             //Seta os valores
-            stmt.setString(1, atendimento.getNome());
+            stmt.setObject(1, atendimento.getAlocacaoAtendimentoCollection());
+            stmt.setString(2, atendimento.getBairro());
+            stmt.setString(3, atendimento.getCidade());
+            stmt.setString(4, atendimento.getComplemento());
+            stmt.setDate(5, (Date) atendimento.getDataFinalAtendimento());
+            stmt.setDate(6, (Date) atendimento.getDataInicialAtendimento());
+            stmt.setString(7, atendimento.getDescricao());
+            stmt.setString(8, atendimento.getEstado());
+            stmt.setString(9, atendimento.getHoraFinalAtendimento());
+            stmt.setString(10, atendimento.getHoraInicialAtendimento());
+            stmt.setInt(11, atendimento.getId());
+            stmt.setString(12, atendimento.getLogradouro());
+            stmt.setInt(13, atendimento.getNumeroAtendimento());
+            stmt.setInt(14, atendimento.getStatus());
+            stmt.setObject(15, atendimento.getTipoAtendimentoId());
            
             
 

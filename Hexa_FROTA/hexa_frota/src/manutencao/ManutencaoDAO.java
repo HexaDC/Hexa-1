@@ -5,6 +5,7 @@
 package manutencao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import util.ConnectionFactory;
@@ -35,7 +36,15 @@ public class ManutencaoDAO {
             PreparedStatement stmt = connection.prepareStatement(INSERIR_MANUTENCAO);
 
             //Seta os valores
-            stmt.setString(1, manutencao.getNome());
+            stmt.setDate(1, (Date) manutencao.getDataFinal());
+            stmt.setDate(2, (Date) manutencao.getDataInicial());
+            stmt.setDate(3, (Date) manutencao.getHoraFinal());
+            stmt.setDate(4, (Date) manutencao.getHoraInicial());
+            stmt.setInt(5, manutencao.getId());
+            stmt.setString(6, manutencao.getObservacao());
+            stmt.setObject(7, manutencao.getRegistroPreventivoId());
+            stmt.setObject(8, manutencao.getStatusVtrId());
+            stmt.setObject(9, manutencao.getVeiculoId());
            
             
 
