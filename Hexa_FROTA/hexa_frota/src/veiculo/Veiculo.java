@@ -11,10 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import modelovtr.ModeloVtr;
 
 /**
  *
@@ -47,6 +50,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Veiculo.findByChassi", query = "SELECT v FROM Veiculo v WHERE v.chassi = :chassi"),
     @NamedQuery(name = "Veiculo.findByCodigo", query = "SELECT v FROM Veiculo v WHERE v.codigo = :codigo")})
 public class Veiculo implements Serializable {
+    @JoinColumn(name = "modelo_vtr", referencedColumnName = "id")
+    @ManyToOne
+    private ModeloVtr modeloVtr;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -299,6 +305,14 @@ public class Veiculo implements Serializable {
     @Override
     public String toString() {
         return "veiculo.Veiculo[ id=" + id + " ]";
+    }
+
+    public ModeloVtr getModeloVtr() {
+        return modeloVtr;
+    }
+
+    public void setModeloVtr(ModeloVtr modeloVtr) {
+        this.modeloVtr = modeloVtr;
     }
     
 }

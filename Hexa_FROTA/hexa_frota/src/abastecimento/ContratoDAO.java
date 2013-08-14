@@ -5,6 +5,7 @@
 package abastecimento;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import util.ConnectionFactory;
@@ -35,7 +36,11 @@ public class ContratoDAO {
             PreparedStatement stmt = connection.prepareStatement(INSERIR_CONTRATO);
 
             //Seta os valores
-            stmt.setString(1, contrato.getNome());
+            stmt.setObject(1, contrato.getCombustivelContratadoCollection());
+            stmt.setDate(2, (Date) contrato.getDataVigenciaFinal());
+            stmt.setDate(3, (Date) contrato.getDataVigenciaInicial());
+            stmt.setInt(4, contrato.getId());
+            stmt.setString(5, contrato.getNumContrato());
            
             
 

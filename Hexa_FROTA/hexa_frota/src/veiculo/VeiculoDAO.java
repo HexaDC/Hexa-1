@@ -57,6 +57,7 @@ public class VeiculoDAO {
             stmt.setString(19, veiculo.getTipoCambio());
             stmt.setString(20, veiculo.getTipoCombustivel());
             stmt.setInt(21, veiculo.getVeiculoId());
+            stmt.setObject(22s, veiculo.getModeloVtr());
             
 
 

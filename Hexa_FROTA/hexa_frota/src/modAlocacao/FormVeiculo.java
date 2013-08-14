@@ -41,12 +41,43 @@ public class FormVeiculo extends javax.swing.JPanel {
         btnLimpar = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox();
+        jTextField11 = new javax.swing.JTextField();
+        jTextField12 = new javax.swing.JTextField();
+        jTextField13 = new javax.swing.JTextField();
+        jTextField14 = new javax.swing.JTextField();
+        jTextField15 = new javax.swing.JTextField();
+        jTextField16 = new javax.swing.JTextField();
+        jTextField17 = new javax.swing.JTextField();
+        jTextField18 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -61,22 +92,23 @@ public class FormVeiculo extends javax.swing.JPanel {
         rdoHabilitacao.setText("Nº Frota");
         add(rdoHabilitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 44, -1, -1));
 
-        rdoNome.setText("Nome (operador)");
+        rdoNome.setText("Modelo");
         add(rdoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 44, -1, -1));
 
-        rdoMatricula.setText("Nº Matrícula");
-        add(rdoMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 44, -1, -1));
+        rdoMatricula.setText("Nº Placa");
+        add(rdoMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
         add(txtPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 69, 700, -1));
 
         rdoListar.setText("Listar Todos");
         add(rdoListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 44, -1, -1));
 
+        btnPesquisa.setText("Pesquisar");
         btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisaActionPerformed(evt);
             }
         });
-        add(btnPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 70, 60, 20));
+        add(btnPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 67, -1, -1));
 
         tblOperador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,25 +148,120 @@ public class FormVeiculo extends javax.swing.JPanel {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setText("Nº Frota");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, -1));
+        jLabel3.setText("Ano de fabricação:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, 20));
 
-        jTextField2.setText("Placa");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 50, -1));
+        jLabel4.setText("Ano do modelo:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 20));
 
-        jTextField3.setText("Chassi");
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+        jLabel5.setText("Modelo do veiculo:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 20));
 
-        jTextField4.setText("Montadora");
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 70, -1));
+        jLabel6.setText("Cor:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 20));
 
-        jTabbedPane1.addTab("tab1", jPanel1);
+        jLabel17.setText("Tipo de combustível:");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, 20));
+
+        jLabel18.setText("Placa:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, 20));
+
+        jLabel19.setText("Número de Frota:");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, 20));
+
+        jLabel20.setText("Portas:");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 20));
+
+        jTextField5.setText("jTextField5");
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
+
+        jTextField6.setText("jTextField5");
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
+
+        jTextField7.setText("jTextField5");
+        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, -1, -1));
+
+        jTextField8.setText("jTextField5");
+        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+
+        jTextField9.setText("jTextField5");
+        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+
+        jTextField10.setText("jTextField5");
+        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+
+        jTabbedPane1.addTab("Informações Principais", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jTabbedPane1.addTab("tab2", jPanel2);
+
+        jLabel12.setText("Cambio:");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 20));
+
+        jLabel7.setText("Renavam:");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 20));
+
+        jLabel8.setText("Chassi:");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 20));
+
+        jLabel15.setText("Adicionais:");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 20));
+
+        jLabel11.setText("Potência:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, 20));
+
+        jLabel9.setText("Cilindradas");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, 20));
+
+        jLabel10.setText("Cilindros");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, 20));
+
+        jLabel16.setText("Média de consumo:");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, 20));
+
+        jLabel14.setText("Capacidade do Tanque:");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, 20));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        jTextField11.setText("jTextField5");
+        jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+
+        jTextField12.setText("jTextField5");
+        jPanel2.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        jTextField13.setText("jTextField5");
+        jPanel2.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
+
+        jTextField14.setText("jTextField5");
+        jPanel2.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+
+        jTextField15.setText("jTextField5");
+        jPanel2.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+
+        jTextField16.setText("jTextField5");
+        jPanel2.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
+
+        jTextField17.setText("jTextField5");
+        jPanel2.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+
+        jTextField18.setText("jTextField5");
+        jPanel2.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
+
+        jTabbedPane1.addTab("Informações Complementares - I", jPanel2);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jTabbedPane1.addTab("tab3", jPanel3);
+
+        jLabel13.setText("Observação:");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jTabbedPane1.addTab("Informações Complementares - II", jPanel3);
 
         add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 790, 310));
     }// </editor-fold>//GEN-END:initComponents
@@ -152,17 +279,48 @@ public class FormVeiculo extends javax.swing.JPanel {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisa;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JRadioButton rdoHabilitacao;
     private javax.swing.JRadioButton rdoListar;
     private javax.swing.JRadioButton rdoMatricula;

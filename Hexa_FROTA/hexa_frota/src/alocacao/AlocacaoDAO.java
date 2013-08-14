@@ -5,6 +5,7 @@
 package alocacao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import util.ConnectionFactory;
@@ -35,7 +36,18 @@ public class AlocacaoDAO {
             PreparedStatement stmt = connection.prepareStatement(INSERIR_ALOCACAO);
 
             //Seta os valores
-            stmt.setString(1, alocacao.getNome());
+            stmt.setObject(1, alocacao.getAlocacaoAtendimentoCollection());
+            stmt.setDate(1, (Date) alocacao.getDataFinalAlocacao());
+            stmt.set(1, alocacao.get());
+            stmt.set(1, alocacao.get());
+            stmt.set(1, alocacao.get());
+            stmt.set(1, alocacao.get());
+            stmt.set(1, alocacao.get());
+            stmt.set(1, alocacao.get());
+            stmt.set(1, alocacao.get());
+            stmt.set(1, alocacao.get());
+            stmt.set(1, alocacao.get());
+            stmt.set(1, alocacao.get());
            
             
 

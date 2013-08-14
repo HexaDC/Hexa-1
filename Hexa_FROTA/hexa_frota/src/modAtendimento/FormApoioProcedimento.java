@@ -115,7 +115,7 @@ public class FormApoioProcedimento extends javax.swing.JFrame {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 53, -1, -1));
+        getContentPane().add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 42, 100, 30));
 
         tblTipoAtendimento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
